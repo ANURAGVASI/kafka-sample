@@ -1,0 +1,85 @@
+DOCKER
+------
+
+
+namespacing & control groups are present in linux. docker uses linux VM on host machine
+
+docker	build . -> build a image from current context
+
+docker build -f filename . -> specify custom dockerfile to serach otehr than default dockerfile
+
+docker run = docker create + docker start(with -a )
+
+docker run -p port:port imagename -> for port mapping
+
+docker system prune -> remove all stopped conatiners and build cache
+
+docker stop - SIGTERM  - can use this to clean up ex: process.on('SIGTERM', callback) TIMELIMIT (10sec to close or else docker kill wil be executed auto)
+
+docker kill - SIGKILL - cannot use in the program directly closes
+
+docker exec -i -t conatinerID command - to execute anotehr command or process in that container. -i flag is  to be able to provide input, -t is for text formatting
+
+docker exec -it containerID sh - to open shell command prompt inside a running conatiner
+
+docker run -it image-name sh - to run and open sheel at same time
+
+**seperate filesystems for each conatiner(isolated)
+
+https://derickbailey.com/2017/03/09/selecting-a-node-js-image-for-docker/ -> how to select a image
+
+docker run -d image-name -> to run in background
+
+_-------------------------------------------------------------------------
+
+docker-compose => to run mutiple containers
+
+docker-compose up -> takes docker.compose.yml file and creates multiple service/conatiners at same time and interconnect network
+
+resart policies:
+
+'on'
+on-failure
+unless-stopped
+always
+
+*mention in docker-compose.yml file
+
+docker-compose ps -> lists all running conatiners present in docker-compose.yml file (run thsi command in same directory)
+
+
+----------------------------------------------------------------------------
+
+docker volumes -> file mapping.... reference to compouter local folders from runing  container (used for hot reloading)
+
+
+------------------------------------------------------------------------------
+
+
+multi step builds : 
+
+each from is considered as a seperate block in dockerfile
+use "as" to give a name (ex: FROM node:alpine as build-phase)
+
+then use this name to use these files in other container within same dockerfile
+(COPY --from=build-phase /path /path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
